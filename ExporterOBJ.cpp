@@ -134,7 +134,10 @@ string ExporterOBJ::ShowFacePoints(const Model3D& Model, int Index) const {
 	cout << "Face " << Index << ": ";
 	// 输出每个点的索引和坐标
 	for (int j = 0; j < Model.Faces[Index-1].Points.size(); j++) {
-		cout << "Point " << Model.Faces[Index-1].Points[j].Index << " Coords: " << Model.Faces[Index-1].Points[j].Coord << endl;
+		cout << "Point " << Model.Faces[Index-1].Points[j].Index 
+			<< " Coords: " << Model.Faces[Index-1].Points[j].Coord[0]
+			<< " " << Model.Faces[Index-1].Points[j].Coord[1]
+			<< " " << Model.Faces[Index-1].Points[j].Coord[2] << endl;
 	}
 	cout << endl;
 	return "Successfully Shown.\n";
@@ -152,7 +155,10 @@ string ExporterOBJ::ShowLinePoints(const Model3D& Model, int Index) const {
 	cout << "Line " << Index << ": ";
 	// 输出每个点的索引和坐标
 	for (int j = 0; j < Model.Lines[Index - 1].Points.size(); j++) {
-		cout << "Point " << Model.Lines[Index - 1].Points[j].Index << " Coords: " << Model.Lines[Index - 1].Points[j].Coord << endl;
+		cout << "Point " << Model.Lines[Index - 1].Points[j].Index 
+			<< " Coords: " << Model.Lines[Index - 1].Points[j].Coord[0]
+			<< " " << Model.Lines[Index - 1].Points[j].Coord[1]
+			<< " " << Model.Lines[Index - 1].Points[j].Coord[2] << endl;
 	}
 	cout << endl;
 	return "Successfully Shown.\n";
@@ -169,7 +175,11 @@ string ExporterOBJ::ShowLinePoints(const Model3D& Model, int Index) const {
 string ExporterOBJ::ShowPointCoords(const Model3D& Model, int Index) const {
 	cout << "Point " << Index << ": ";
 	// 输出每个点的索引和坐标
-	cout << "Coords: " << Model.Points[Index - 1].Coord << endl;
+	//cout << "Coords: " << Model.Points[Index - 1].Coord << endl;
+	cout << "Coords: " 
+		<< Model.Points[Index - 1].Coord[0] << " " 
+		<< Model.Points[Index - 1].Coord[1] << " " 
+		<< Model.Points[Index - 1].Coord[2] << endl;
 	cout << endl;
 	return "Successfully Shown.\n";
 }
@@ -177,16 +187,16 @@ string ExporterOBJ::ShowPointCoords(const Model3D& Model, int Index) const {
 /*************************************************************************
 【函数名称】       		operator<<
 【函数功能】       		重载输出运算符，输出vector<float>类型的数据
-【参数】           		输入参数ostream& out, const vector<float>& Vec
+【参数】           		输入参数ostream& os, const vector<float>& Vec
 【返回值】         		ostream&
 【开发者及日期】   		胡延 2024.8.3
 【更改记录】       		（若有修改，则必需注明）
 *************************************************************************/
-ostream& operator<<(ostream& out, const vector<float>& Vec) {
-	out << "(";
+ostream& operator<<(ostream& os, const vector<float>& Vec) {
+	os << "(";
 	for (const auto& i : Vec) {
-		out << i << " ";
+		os << i << " ";
 	}
-	out << ")\n";
-	return out;
+	os << ")";
+	return os;
 }

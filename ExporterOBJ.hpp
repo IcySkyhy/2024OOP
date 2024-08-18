@@ -28,7 +28,7 @@ class ExporterOBJ : public Exporter {
 public:
 	ExporterOBJ() {}
 	// 重载运算符<<
-	friend ostream& operator<<(ostream& out, const vector<float>& Vec);
+	friend ostream& operator<<(ostream& os, const vector<float>& Vec);
 	// 导出模型信息
 	string Exporter(Model3D& Model);
 	// getters

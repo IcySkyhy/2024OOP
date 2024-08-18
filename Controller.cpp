@@ -17,48 +17,34 @@ Controller::Controller() {}
 【开发者及日期】   			胡延 2024.8.3
 【更改记录】       			（若有修改，则必需注明）
 *************************************************************************/
-string Controller::ShowInf(int Option) const { 
+string Controller::ShowInf(int Option, int Index) const { 
 	switch (Option) {
 	case 1:
 		//向下传递，显示点的信息
-		cout << ShowModel(ptd_Model);
+		return ShowModel(ptd_Model);
 		break;
 	case 2:
 		//向下传递，显示面的信息
-		cout << ShowFace(ptd_Model);
+		return ShowFace(ptd_Model);
 		break;
 	case 3:
-	{
 		// 通过输入的面的索引来显示面的信息
-		cout << "Please input the index of the face you want to show: ";
-		int Index = 0;
-		do {
-			cin >> Index;
-			if (Index < 0 || Index >= ptd_Model.Faces.size()) {
-				cout << "Invalid Index, please try again: ";
-			}
-		} while (Index < 0 || Index >= ptd_Model.Faces.size());
-		cout << ShowFacePoints(ptd_Model, Index);
+		if (Index < 0 || Index >= ptd_Model.Faces.size()) {
+			return "Invalid Index\n";
+		}
+		return ShowFacePoints(ptd_Model, Index);
 		break;
-	}
 	case 4:
 		//向下传递，显示线的信息
-		cout << ShowLine(ptd_Model);
+		return ShowLine(ptd_Model);
 		break;
 	case 5:
-	{
 		// 通过输入的线的索引来显示线的信息
-		cout << "Please input the index of the line you want to show: ";
-		int Index;
-		do {
-			cin >> Index;
-			if (Index < 0 || Index >= ptd_Model.Lines.size()) {
-				cout << "Invalid Index, please try again: ";
-			}
-		} while (Index < 0 || Index >= ptd_Model.Lines.size());
-		cout << ShowLinePoints(ptd_Model, Index);
+		if (Index < 0 || Index >= ptd_Model.Lines.size()) {
+			return "Invalid Index\n";
+		}
+		return ShowLinePoints(ptd_Model, Index);
 		break;
-	}
 	case 6:
 		return "Back.\n";
 		break;
@@ -66,7 +52,7 @@ string Controller::ShowInf(int Option) const {
 		return "Invalid Option.\n";
 		break;
 	}
-	return "Successfully Shown.\n";
+	return "";
 }
 
 /*************************************************************************

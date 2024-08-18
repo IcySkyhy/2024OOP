@@ -148,11 +148,31 @@ string UI::MainShowInf(Controller& Controller) {
 		cout << "5. Show Points in Line Part\n";
 		cout << "6. Back\n";
 		cin >> OptNum;
-		cout << Controller.ShowInf(OptNum);
-		if (OptNum != 4) {
+		int Index = 0;
+		switch (OptNum)
+		{
+		case 3:
+			{
+			// 通过输入的面的索引来显示面的信息
+			cout << "Please input the index of the face you want to show: ";
+			cin >> Index;
+			break;
+			}
+		case 5:
+			{
+			// 通过输入的线的索引来显示线的信息
+			cout << "Please input the index of the line you want to show: ";
+			cin >> Index;
+			break;
+			}
+		default:
+			break;
+		}
+		cout << Controller.ShowInf(OptNum, Index);
+		if (OptNum != 6) {
 			cout << "Back to the ModelMenu?\n1.Yes 2.No\n";
 			cin >> OptNum;
-			OptNum += 3;
+			OptNum += 5;
 		}
 		system("cls");
 	}

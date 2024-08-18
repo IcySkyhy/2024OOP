@@ -32,7 +32,7 @@ class Controller : public ExporterOBJ, public ImporterOBJ {
 public:
 	Controller();
 	// getter
-	string ShowInf(int Option) const;
+	string ShowInf(int Option, int Index) const;
 	string ShowFaceInModify(int Index) const;
 	string ShowLineInModify(int Index) const;
 	// setter
